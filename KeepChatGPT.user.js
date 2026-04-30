@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name              KeepChatGPT
 // @description       这是一款提高ChatGPT的数据安全能力和效率的插件。并且免费共享大量创新功能，如：自动刷新、保持活跃、数据安全、取消审计、克隆对话、言无不尽、净化页面、展示大屏、拦截跟踪、日新月异、明察秋毫等。让我们的AI体验无比安全、顺畅、丝滑、高效、简洁。
-// @version           34.4
+// @version           34.6
 // @author            xcanwin
 // @namespace         https://github.com/xcanwin/KeepChatGPT/
 // @supportURL        https://github.com/xcanwin/KeepChatGPT/
@@ -106,8 +106,7 @@
     };
 
     const u = `/api/${GM_info.script.namespace.slice(33, 34)}uth/s${GM_info.script.namespace.slice(28, 29)}ssion`;
-    const symbol1_selector =
-        "nav.flex:not(#stage-sidebar-tiny-bar):not([inert]):not(:where([inert] *))";
+    const symbol1_selector = "nav.flex:not(#stage-sidebar-tiny-bar):not([inert]):not(:where([inert] *))";
     const symbol2_selector =
         "div.sticky div.justify-center.top-0 button span.sr-only";
     const trackingHostRegex =
@@ -1920,21 +1919,6 @@ ${symbol1_selector} div.pt-3\\.5 {
 #new-chat-button + div, #expand-sidebar-bottom-button, #nav-toggle-button, #user-menu ~ div {
     display: none !important;
     max-height: 0 !important;
-}
-
-/* ChatGPT sidebar compatibility: only collapse the tiny rail when the
-   adjacent expanded sidebar pane is active. In collapsed mode, this rail
-   owns the visible sidebar controls. */
-#stage-sidebar-tiny-bar:has(+ div:not([inert]):not(.opacity-0):not(.pointer-events-none) nav[aria-label="Chat history"]),
-#stage-sidebar-tiny-bar:has(+ div:not([inert]):not(.opacity-0):not(.pointer-events-none) nav[aria-label="Sidebar"]),
-#stage-sidebar-tiny-bar:has(+ div:not([inert]):not(.opacity-0):not(.pointer-events-none) #history) {
-    display: none !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    max-width: 0 !important;
-    flex-basis: 0 !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
 }
 
 ${symbol1_selector} div.overflow-y-auto a.hover\\:pr-4 {
