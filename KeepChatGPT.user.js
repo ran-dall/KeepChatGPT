@@ -106,7 +106,8 @@
     };
 
     const u = `/api/${GM_info.script.namespace.slice(33, 34)}uth/s${GM_info.script.namespace.slice(28, 29)}ssion`;
-    const symbol1_selector = "nav.flex:not(#stage-sidebar-tiny-bar):not([inert])";
+    const symbol1_selector =
+        "nav.flex:not(#stage-sidebar-tiny-bar):not([inert]):not(:where([inert] *))";
     const symbol2_selector =
         "div.sticky div.justify-center.top-0 button span.sr-only";
     const trackingHostRegex =
@@ -1921,8 +1922,12 @@ ${symbol1_selector} div.pt-3\\.5 {
     max-height: 0 !important;
 }
 
-/* ChatGPT sidebar compatibility: collapse the hidden tiny rail without deleting it. */
-#stage-sidebar-tiny-bar {
+/* ChatGPT sidebar compatibility: only collapse the tiny rail when the
+   adjacent expanded sidebar pane is active. In collapsed mode, this rail
+   owns the visible sidebar controls. */
+#stage-sidebar-tiny-bar:has(+ div:not([inert]):not(.opacity-0):not(.pointer-events-none) nav[aria-label="Chat history"]),
+#stage-sidebar-tiny-bar:has(+ div:not([inert]):not(.opacity-0):not(.pointer-events-none) nav[aria-label="Sidebar"]),
+#stage-sidebar-tiny-bar:has(+ div:not([inert]):not(.opacity-0):not(.pointer-events-none) #history) {
     display: none !important;
     width: 0 !important;
     min-width: 0 !important;
